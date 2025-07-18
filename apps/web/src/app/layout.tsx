@@ -34,21 +34,25 @@ export default function RootLayout({
             <nav className="mt-8">
               <ul className="space-y-4">
                 <li>
-                  <Link href="/" className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white">
+                  <Link
+                    href="/"
+                    className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white"
+                  >
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link href="/inbox" className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white">
+                  <Link
+                    href="/inbox"
+                    className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white"
+                  >
                     Inbox Agent
                   </Link>
                 </li>
               </ul>
             </nav>
           </aside>
-          <main className="flex-1 p-10">
-            {children}
-          </main>
+          <main className="flex-1 p-10">{children}</main>
         </div>
       </body>
     </html>
