@@ -97,12 +97,20 @@ importers:
         specifier: ^8.12.0
         version: 8.16.3
     devDependencies:
+      '@personal-agent/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/node':
+        specifier: ^20.14.10
+        version: 20.19.7
       dotenv:
         specifier: ^16.4.5
         version: 16.6.1
       drizzle-kit:
         specifier: ^0.23.0
         version: 0.23.2
+
+  packages/typescript-config: {}
 
 packages:
 

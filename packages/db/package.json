@@ -16,7 +16,9 @@
     "pg": "^8.12.0"
   },
   "devDependencies": {
+    "@personal-agent/typescript-config": "workspace:*",
     "drizzle-kit": "^0.23.0",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "@types/node": "^20.14.10"
   }
 }
