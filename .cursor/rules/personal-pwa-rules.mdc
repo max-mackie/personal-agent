@@ -1,0 +1,117 @@
+---
+description: This rule is the master blueprint for my AI-powered Personal PWA project. It defines the core architecture, the public/private repository strategy, the full technology stack (Next.js, Hono, Drizzle, Turborepo), and the planned features like the Net Worth Tracker and Spotify Agent.  Apply this rule for any query about; - Scaffolding or setting up the project structure. - Making architectural decisions. - Choosing or implementing technologies from the stack. - Adding or developing one of the planned features. - Clarifying the project's goals or data flow.
+alwaysApply: false
+---
+***
+
+### **Project Blueprint: AI-Powered Personal PWA**
+
+#### **1. Core Vision & Architecture**
+
+*   **Goal:** A mobile-first Progressive Web App (PWA) for iPhone, serving as a dashboard for multiple "mini-apps."
+*   **Architecture:** A microservice-style architecture using Vercel Serverless Functions.
+*   **Key Requirements:** Offline access, simple deployment on Vercel, and a clear separation between public portfolio code and private application logic.
+
+#### **2. Public/Private Code Strategy**
+
+This project uses a **two-repository strategy** linked to a single Vercel project to separate portfolio-worthy code from sensitive, personal logic.
+
+*   **`public-monorepo` (GitHub: Public)**
+    *   Contains the main Next.js app shell, shared UI components (`shadcn/ui`), and non-sensitive features.
+    *   **Purpose:** To showcase modern frontend development, monorepo management (`Turborepo`), and safe, shareable application logic.
+    *   **Features:**
+        *   Main App Dashboard & UI
+        *   Spotify Playlist Agent (UI & API)
+
+*   **`private-services` (GitHub: Private)**
+    *   Contains *only* the backend serverless functions that handle sensitive data.
+    *   The file structure will mirror the `api/` directory (e.g., `/api/networth/index.ts`).
+    *   **Purpose:** To securely house all personal logic and data access, completely isolated from the public repository.
+    *   **Features:**
+        *   Net Worth Tracker API
+        *   Inbox Management Agent API
+        *   Task Prioritization Agent API
+        *   Notes & Insights Agent API
+
+#### **3. Recommended Technology Stack**
+
+This stack is chosen to maximize learning with modern, in-demand technologies highly compatible with the Vercel ecosystem.
+
+| Category                | Technology                                     | Purpose & Rationale                                                                                                                   |
+| ----------------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **Monorepo Tooling**      | **Turborepo**                                  | To manage the `public-monorepo`, providing fast, cached builds and a structured development environment.                                  |
+| **Frontend Framework**    | **Next.js (App Router)**                       | For the PWA shell, leveraging React Server Components for modern data fetching and rendering.                                            |
+| **UI & Styling**        | **Tailwind CSS + shadcn/ui**                   | Utility-first styling with copy-pasteable, customizable components for rapid and educational UI development.                            |
+| **State Management**    | **Zustand or Jotai**                           | For lightweight, modern client-side state management when needed.                                                                         |
+| **Backend API Framework** | **Hono**                                       | For writing fast, lightweight, and edge-compatible serverless functions for the microservice backend in both repos.                     |
+| **Data Validation**     | **Zod**                                        | For type-safe schema declaration and validation, ensuring data integrity between frontend and backend.                                  |
+| **Database & ORM**      | **Vercel Postgres + Drizzle ORM**              | A serverless SQL database with `pgvector` for AI embeddings, paired with a modern, type-safe ORM that is close to raw SQL.             |
+| **AI Integration**      | **Vercel AI SDK & LangChain.js**                 | The AI SDK for streaming LLM responses to the frontend. LangChain.js for orchestrating complex logic within the backend AI agents.           |
+| **Authentication**      | **Auth.js (NextAuth.js)**                      | The standard for secure, flexible authentication in the Next.js ecosystem.                                                                |
+| **Deployment**          | **Vercel**                                     | For seamless, Git-based deployment of the entire stack, connecting both repositories to a single project.                                   |
+
+#### **4. Data Flow ("How It All Fits Together")**
+
+1.  A user interacts with the **Next.js** PWA, styled with **Tailwind CSS** and using **shadcn/ui** components.
+2.  When data is needed, a client component calls an API route (e.g., `/api/networth` or `/api/spotify`).
+3.  Vercel routes the request to the correct function, whether it's from the **public monorepo** or the **private services** repo.
+4.  The API route, written with **Hono**, validates the request using **Zod**.
+5.  The Hono function uses **Drizzle ORM** to query the **Vercel Postgres** database.
+6.  For AI tasks, the function uses **LangChain.js** to interact with an LLM and **Vercel Postgres** with `pgvector`.
+7.  The response is sent back to the frontend. If streaming, the **Vercel AI SDK** handles the UI updates smoothly.***
+
+### **Project Blueprint: AI-Powered Personal PWA**
+
+#### **1. Core Vision & Architecture**
+
+*   **Goal:** A mobile-first Progressive Web App (PWA) for iPhone, serving as a dashboard for multiple "mini-apps."
+*   **Architecture:** A microservice-style architecture using Vercel Serverless Functions.
+*   **Key Requirements:** Offline access, simple deployment on Vercel, and a clear separation between public portfolio code and private application logic.
+
+#### **2. Public/Private Code Strategy**
+
+This project uses a **two-repository strategy** linked to a single Vercel project to separate portfolio-worthy code from sensitive, personal logic.
+
+*   **`public-monorepo` (GitHub: Public)**
+    *   Contains the main Next.js app shell, shared UI components (`shadcn/ui`), and non-sensitive features.
+    *   **Purpose:** To showcase modern frontend development, monorepo management (`Turborepo`), and safe, shareable application logic.
+    *   **Features:**
+        *   Main App Dashboard & UI
+        *   Spotify Playlist Agent (UI & API)
+
+*   **`private-services` (GitHub: Private)**
+    *   Contains *only* the backend serverless functions that handle sensitive data.
+    *   The file structure will mirror the `api/` directory (e.g., `/api/networth/index.ts`).
+    *   **Purpose:** To securely house all personal logic and data access, completely isolated from the public repository.
+    *   **Features:**
+        *   Net Worth Tracker API
+        *   Inbox Management Agent API
+        *   Task Prioritization Agent API
+        *   Notes & Insights Agent API
+
+#### **3. Recommended Technology Stack**
+
+This stack is chosen to maximize learning with modern, in-demand technologies highly compatible with the Vercel ecosystem.
+
+| Category                | Technology                                     | Purpose & Rationale                                                                                                                   |
+| ----------------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **Monorepo Tooling**      | **Turborepo**                                  | To manage the `public-monorepo`, providing fast, cached builds and a structured development environment.                                  |
+| **Frontend Framework**    | **Next.js (App Router)**                       | For the PWA shell, leveraging React Server Components for modern data fetching and rendering.                                            |
+| **UI & Styling**        | **Tailwind CSS + shadcn/ui**                   | Utility-first styling with copy-pasteable, customizable components for rapid and educational UI development.                            |
+| **State Management**    | **Zustand or Jotai**                           | For lightweight, modern client-side state management when needed.                                                                         |
+| **Backend API Framework** | **Hono**                                       | For writing fast, lightweight, and edge-compatible serverless functions for the microservice backend in both repos.                     |
+| **Data Validation**     | **Zod**                                        | For type-safe schema declaration and validation, ensuring data integrity between frontend and backend.                                  |
+| **Database & ORM**      | **Vercel Postgres + Drizzle ORM**              | A serverless SQL database with `pgvector` for AI embeddings, paired with a modern, type-safe ORM that is close to raw SQL.             |
+| **AI Integration**      | **Vercel AI SDK & LangChain.js**                 | The AI SDK for streaming LLM responses to the frontend. LangChain.js for orchestrating complex logic within the backend AI agents.           |
+| **Authentication**      | **Auth.js (NextAuth.js)**                      | The standard for secure, flexible authentication in the Next.js ecosystem.                                                                |
+| **Deployment**          | **Vercel**                                     | For seamless, Git-based deployment of the entire stack, connecting both repositories to a single project.                                   |
+
+#### **4. Data Flow ("How It All Fits Together")**
+
+1.  A user interacts with the **Next.js** PWA, styled with **Tailwind CSS** and using **shadcn/ui** components.
+2.  When data is needed, a client component calls an API route (e.g., `/api/networth` or `/api/spotify`).
+3.  Vercel routes the request to the correct function, whether it's from the **public monorepo** or the **private services** repo.
+4.  The API route, written with **Hono**, validates the request using **Zod**.
+5.  The Hono function uses **Drizzle ORM** to query the **Vercel Postgres** database.
+6.  For AI tasks, the function uses **LangChain.js** to interact with an LLM and **Vercel Postgres** with `pgvector`.
+7.  The response is sent back to the frontend. If streaming, the **Vercel AI SDK** handles the UI updates smoothly.

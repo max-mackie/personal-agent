@@ -1,16 +1,10 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+const baseConfig = require("@repo/eslint-config/next.js");
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+/** @type {import('eslint').Linter.Config[]} */
+module.exports = [
+  ...baseConfig,
+  {
+    // Add any app-specific rules or overrides here
+    ignores: ["src/env.js"],
+  },
 ];
-
-export default eslintConfig;
