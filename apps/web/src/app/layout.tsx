@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
+import { Providers } from "./providers";
+import { Sidebar } from "./sidebar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,28 +29,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex min-h-screen">
-          <aside className="w-64 bg-gray-100 p-6 dark:bg-gray-900">
-            <h2 className="text-xl font-semibold">Personal Agent</h2>
-            <nav className="mt-8">
-              <ul className="space-y-4">
-                <li>
-                  <Link href="/" className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/inbox" className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white">
-                    Inbox Agent
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </aside>
-          <main className="flex-1 p-10">
-            {children}
-          </main>
-        </div>
+        <Providers>
+          <div className="flex min-h-screen">
+            <Sidebar />
+            <main className="flex-1 p-10">{children}</main>
+          </div>
+        </Providers>
       </body>
     </html>
   );
