@@ -1,6 +1,6 @@
 import { Providers } from "./providers";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import { SignIn, SignOut } from "./auth-components";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
